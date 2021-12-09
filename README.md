@@ -23,6 +23,13 @@ cd WebODM
 ./webodm.sh start --dev
 ```
 
+* 파일을 Docker 이미지 내의 저장소가 아닌 host filesystem에 저장하기 위해서는 media-dir 옵션 사용
+
+```bash
+cd WebODM
+./webodm.sh start --dev --media-dir /c/IMG_DATA
+```
+
 <br><br>
 # 테마 수정
 기존 설치된 docker이미지가 있을 경우 테마가 적용 안될 수 있음 
@@ -89,8 +96,22 @@ color: #FFFFFF;
 ## Windroneus + WebODM 화면
 ![화면 캡처 2021-12-09 220644](https://user-images.githubusercontent.com/61860152/145403337-8f2031c6-c8b6-4c8a-ba88-b04ed9245c45.png)
 
+<br><br>
+# 오류 처리
+## 글자가 겹쳐 보일 경우 
+![image](https://user-images.githubusercontent.com/61860152/145431323-6d0732fa-b869-4b5a-b9c7-cf5a43333a6d.png)
+
+브랜드 항목에서 App Logo 재 업로드
+![image](https://user-images.githubusercontent.com/61860152/145431548-4f63c1d4-07fb-4a0e-b07f-24dd493db2af.png)
+
+## 사이드바에 html script가 보일 때
+![image](https://user-images.githubusercontent.com/61860152/145432190-611622ab-8f68-44c4-8af9-ba8e7cdab1e9.png)
+
+Administration -> Plugin에서 posm-gcpi, lightning Disabled
+![image](https://user-images.githubusercontent.com/61860152/145432406-0962dc26-8d0e-4c4a-9d2c-3dbaf32416ae.png)
+
 
 <br><br>
-# 오류
+# 제약 사항
 FireFox에서만 정상 작동 Chrome, Edge의 경우 Cross site 관련되어 오류 발생 (로그인 실패)
 ![image](https://user-images.githubusercontent.com/61860152/145428216-5e282ce3-89ea-4967-986d-02a17a5aa62f.png)
