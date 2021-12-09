@@ -31,7 +31,7 @@ cd WebODM
 1. Administration -> Theme
 ![image](https://user-images.githubusercontent.com/61860152/145421175-6ba91bb3-2bb4-4f2d-a9df-86bc56edbc99.png)
 
-2. 세부 수정 사항
+2. 세부 수정 사항(필요시 테마 항목에서 직접 수정 필요)
 <table>
 <tr><td>Primary</td> <td>2C3E50</td></tr>
 <tr><td>Secondary</td> <td>FFFFFF</td></tr>
