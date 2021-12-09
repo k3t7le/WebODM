@@ -9,7 +9,9 @@ from app.api.tasks import TaskSerializer
 from app.models import Task
 from django.views.decorators.csrf import ensure_csrf_cookie
 from webodm import settings
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 def get_public_task(task_pk):
     """
     Get a task and raise a 404 if it's not public
@@ -20,6 +22,7 @@ def get_public_task(task_pk):
     return task
 
 @ensure_csrf_cookie
+@csrf_exempt
 def handle_map(request, template, task_pk=None, hide_title=False):
     task = get_public_task(task_pk)
 
@@ -40,6 +43,7 @@ def map_iframe(request, task_pk=None):
     return handle_map(request, 'app/public/map_iframe.html', task_pk, True)
 
 @ensure_csrf_cookie
+@csrf_exempt
 def handle_model_display(request, template, task_pk=None):
     task = get_public_task(task_pk)
 
@@ -52,12 +56,15 @@ def handle_model_display(request, template, task_pk=None):
             }.items()
         })
 
+@csrf_exempt
 def model_display(request, task_pk=None):
     return handle_model_display(request, 'app/public/3d_model_display.html', task_pk)
 
+@csrf_exempt
 def model_display_iframe(request, task_pk=None):
     return handle_model_display(request, 'app/public/3d_model_display_iframe.html', task_pk)
 
+@csrf_exempt
 def task_json(request, task_pk=None):
     task = get_public_task(task_pk)
     serializer = TaskSerializer(task)

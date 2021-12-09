@@ -53,7 +53,8 @@ WORKER_RUNNING = sys.argv[2:3] == ["worker"]
 DEBUG = os.environ.get('WO_DEBUG', 'YES') == 'YES' or TESTING
 DEV = os.environ.get('WO_DEV', 'NO') == 'YES' and not TESTING
 DEV_WATCH_PLUGINS = DEV and os.environ.get('WO_DEV_WATCH_PLUGINS', 'NO') == 'YES'
-SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = os.environ.get('WO_SSL', 'NO') == 'YES'
+#SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = os.environ.get('WO_SSL', 'NO') == False
+SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = True
 INTERNAL_IPS = ['127.0.0.1']
 
 ALLOWED_HOSTS = ['*']
@@ -116,11 +117,12 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    #'corsheaders.middleware.CorsMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'app.csrfMiddle.DisableCSRFCheck',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     #'django.middleware.locale.LocaleMiddleware',
@@ -267,6 +269,10 @@ LOGIN_URL = '/login/'
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SAMESITE = None
+CSRF_COOKIE_SAMESITE = None
+CSRF_TRUSTED_ORIGINS = ['localhost:8000']
+X_FRAME_OPTIONS = 'ALLOWALL'
+CSRF_COOKIE_HTTPONLY = False
 
 # File uploads
 MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')

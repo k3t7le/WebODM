@@ -26,6 +26,7 @@ class DynamicForm(forms.Form):
 def HomeView(plugin):
     @login_required
     def view(request):
+        print("HomeView -> view")
         ds = plugin.get_user_data_store(request.user)
 
         # if this is a POST request we need to process the form data
