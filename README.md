@@ -118,7 +118,8 @@ FireFox에서만 정상 작동 Chrome, Edge의 경우 Cross site 관련되어 �
 
 <br><br>
 # 수정 검토 사항
-* host filesystem에 파일 저장 시 $media-dir/project/$project-index(숫자1부터 증가)/$taskid 에 저장
+* host filesystem에 파일 저장 시 
+`$media-dir/project/$project-index(숫자1부터 증가)/$taskid 에 저장
 project-index -> project name
-taskid -> 작업날짜+시간+초 로 변경 가능한지 검토
+taskid -> 작업날짜+시간+초 로 변경 가능한지 검토`
 * edge, chrome 에러 발생 수정(로그인 불가 현상)
