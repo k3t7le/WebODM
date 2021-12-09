@@ -15,7 +15,11 @@ from django.utils.translation import ugettext as _
 from django import forms
 from webodm import settings
 
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 def index(request):
+    print("index in ")
     # Check first access
     if User.objects.filter(is_superuser=True).count() == 0:
         if settings.SINGLE_USER_MODE:
@@ -32,7 +36,9 @@ def index(request):
                     else settings.LOGIN_URL)
 
 @login_required
+@csrf_exempt
 def dashboard(request):
+    print("dashboard in~~~~~")
     no_processingnodes = ProcessingNode.objects.count() == 0
     if no_processingnodes and settings.PROCESSING_NODES_ONBOARDING is not None:
         return redirect(settings.PROCESSING_NODES_ONBOARDING)
@@ -50,7 +56,9 @@ def dashboard(request):
 
 
 @login_required
+@csrf_exempt
 def map(request, project_pk=None, task_pk=None):
+    print("map in~~~~~")
     title = _("Map")
 
     if project_pk is not None:
@@ -78,7 +86,9 @@ def map(request, project_pk=None, task_pk=None):
 
 
 @login_required
+@csrf_exempt
 def model_display(request, project_pk=None, task_pk=None):
+
     title = _("3D Model Display")
 
     if project_pk is not None:
@@ -101,10 +111,13 @@ def model_display(request, project_pk=None, task_pk=None):
             }.items()
         })
 
+@csrf_exempt
 def about(request):
+    print("about in~~~~~")
     return render(request, 'app/about.html', {'title': _('About'), 'version': settings.VERSION})
 
 @login_required
+@csrf_exempt
 def processing_node(request, processing_node_id):
     pn = get_object_or_404(ProcessingNode, pk=processing_node_id)
     if not pn.update_node_info():
@@ -125,8 +138,9 @@ class FirstUserForm(forms.ModelForm):
             'password': forms.PasswordInput(),
         }
 
-
+@csrf_exempt
 def welcome(request):
+    print("welcome in~~~~~")
     if User.objects.filter(is_superuser=True).count() > 0:
         return redirect('index')
 
@@ -140,7 +154,7 @@ def welcome(request):
             admin_user.is_superuser = admin_user.is_staff = True
             admin_user.save()
 
-            # Log-in automatically
+            # Log-in automatically 
             login(request, admin_user, 'django.contrib.auth.backends.ModelBackend')
             return redirect('dashboard')
 
@@ -150,9 +164,10 @@ def welcome(request):
                       'firstuserform': fuf
                   })
 
-
+@csrf_exempt
 def handler404(request):
     return render(request, '404.html', status=404)
 
+@csrf_exempt
 def handler500(request):
     return render(request, '500.html', status=500)

@@ -22,7 +22,7 @@ def JsonResponse(dict):
 
 class Plugin(PluginBase):
     def main_menu(self):
-        return [Menu(_("Lightning Network"), self.public_url(""), "fa fa-bolt fa-fw")]
+        return [Menu(_("<span class=\"masked\">Lightning Network</span>"), self.public_url(""), "fa fa-bolt fa-fw")]
 
     def include_js_files(self):
         return ['add_cost_estimate.js']
@@ -55,6 +55,7 @@ class Plugin(PluginBase):
         @login_required
         @require_POST
         def sync_processing_node(request):
+            print("sync_processing_node")
             hostname = request.POST.get('hostname')
             port = int(request.POST.get('port'))
             token = request.POST.get('token')

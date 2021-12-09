@@ -30,7 +30,9 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="/dashboard/"><i class="fa fa-tachometer-alt fa-fw"></i> {% trans 'Dashboard' %}</a>
+                    <a href="/dashboard/"><i class="fa fa-tachometer-alt fa-fw"></i> <span class="masked">
+                        Dashboard
+                    </span> </a>
                 </li>
                 {% load processingnode_extras plugins %}
                 {% can_view_processing_nodes as view_nodes %}
@@ -56,7 +58,10 @@
 
                 {% if view_nodes %}
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> {% trans 'Processing Nodes' %}<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-wrench fa-fw"></i><span class="masked">
+                        Processing Nodes
+                        <span class="fa arrow"></span>
+            </span></a>
                     <ul class="nav nav-second-level">
                         {% for node in nodes %}
                         <li>
@@ -76,7 +81,10 @@
 
                 {% if user.is_staff %}
                 <li>
-                    <a href="#"><i class="fa fa-cogs fa-fw"></i> {% trans 'Administration' %}<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-cogs fa-fw"></i><span class="masked">
+                        Administration
+                        <span class="fa arrow"></span>
+            </span></a>
                     <ul class="nav nav-second-level">
                         {% is_single_user_mode as hide_users %}
                         {% if not hide_users %}
@@ -107,11 +115,15 @@
                 {% is_dev_mode as dev_mode %}
                 {% if dev_mode and user.is_superuser %}
                 <li>
-                    <a href="/dev-tools/"><i class="fa fa-bug fa-fw"></i> {% trans 'Developer Tools' %}</a>
+                    <a href="/dev-tools/"><i class="fa fa-bug fa-fw"></i><span class="masked">
+                        Developer Tools
+                    </span></a>
                 </li>
                 {% endif %}
                 <li id="about-menu">
-                    <a href="/about/"><i class="fa fa-info-circle fa-fw"></i> {% trans 'About' %}</a>
+                    <a href="/about/"><i class="fa fa-info-circle fa-fw"></i><span class="masked">
+                        About
+                    </span></a>
                 </li>
             </ul>
         </div>

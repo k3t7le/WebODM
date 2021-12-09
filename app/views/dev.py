@@ -10,9 +10,11 @@ from django.http import JsonResponse
 from django.utils.translation import get_language
 import requests
 import json, tempfile, os, logging, shutil, subprocess, zipfile, glob, pathlib
+from django.views.decorators.csrf import csrf_exempt
 
 logger = logging.getLogger('app.logger')
 
+@csrf_exempt
 def download_file(url, destination):
     download_stream = requests.get(url, stream=True, timeout=90)
 
@@ -20,6 +22,7 @@ def download_file(url, destination):
         for chunk in download_stream.iter_content(4096):
             fd.write(chunk)
 
+@csrf_exempt
 def copymerge(src, dst, symlinks=False, ignore=None):
     for item in os.listdir(src):
         s = os.path.join(src, item)
@@ -30,7 +33,7 @@ def copymerge(src, dst, symlinks=False, ignore=None):
         else:
             shutil.copy2(s, d)
 
-
+@csrf_exempt
 @user_passes_test(lambda u: u.is_superuser)
 def dev_tools(request, action):
     if not settings.DEV:

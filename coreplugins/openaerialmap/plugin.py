@@ -54,12 +54,14 @@ class Plugin(PluginBase):
         ]
 
     def home_view(self):
+        print("home_view")
         @login_required
         def home(request):
             ds = self.get_user_data_store(request.user)
 
             # if this is a POST request we need to process the form data
             if request.method == 'POST':
+                print("home_view")
                 form = TokenForm(request.POST)
                 if form.is_valid():
                     ds.set_string('token', form.cleaned_data['token'])
