@@ -1,3 +1,38 @@
+## 수정사항 (2021. 12. 09 목)
+#WebODM 수정사항
+1. 사이드바 토글 형태로 수정
+2. 부트스트랩 버전 변경 3.3.1 -> 3.3.7
+3. 색상 변경
+4. 디자인 변경
+
+
+#Windroneus 수정사항
+1. Maps.js 파일 수정
+
+↓↓↓ Maps.js 수정사항 ↓↓↓
+
+[Maps.js.txt](https://github.com/k3t7le/WebODM/files/7685358/Maps.js.txt)
+
+
+```bash
+git clone https://github.com/k3t7le/WebODM --config core.autocrlf=input --depth 1
+cd WebODM
+./webodm.sh start --dev
+```
+
+
+
+
+
+수정 사항 캡쳐
+![화면 캡처 2021-12-09 220615](https://user-images.githubusercontent.com/61860152/145403072-3172df31-9f06-4371-9b65-4a8c20683bad.png)
+
+![화면 캡처 2021-12-09 220644](https://user-images.githubusercontent.com/61860152/145403337-8f2031c6-c8b6-4c8a-ba88-b04ed9245c45.png)
+
+
+
+
+
 <img alt="WebODM" src="https://user-images.githubusercontent.com/1951843/34074943-8f057c3c-e287-11e7-924d-3ccafa60c43a.png" width="180">
 
 [![Build Status](https://travis-ci.org/OpenDroneMap/WebODM.svg?branch=master)](https://travis-ci.org/OpenDroneMap/WebODM) [![Translated](https://hosted.weblate.org/widgets/webodm/-/svg-badge.svg)](https://hosted.weblate.org/engage/webodm/)
