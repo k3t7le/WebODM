@@ -90,3 +90,7 @@ color: #FFFFFF;
 ![화면 캡처 2021-12-09 220644](https://user-images.githubusercontent.com/61860152/145403337-8f2031c6-c8b6-4c8a-ba88-b04ed9245c45.png)
 
 
+<br><br>
+# 오류
+FireFox에서만 정상 작동 Chrome, Edge의 경우 Cross site 관련되어 오류 발생 (로그인 실패)
+![image](https://user-images.githubusercontent.com/61860152/145428216-5e282ce3-89ea-4967-986d-02a17a5aa62f.png)
