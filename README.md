@@ -115,3 +115,10 @@ Administration -> Plugin에서 posm-gcpi, lightning Disabled
 # 제약 사항
 FireFox에서만 정상 작동 Chrome, Edge의 경우 Cross site 관련되어 오류 발생 (로그인 실패)
 ![image](https://user-images.githubusercontent.com/61860152/145428216-5e282ce3-89ea-4967-986d-02a17a5aa62f.png)
+
+<br><br>
+# 수정 검토 사항
+* host filesystem에 파일 저장 시 $media-dir/project/$project-index(숫자1부터 증가)/$taskid 에 저장
+project-index -> project name
+taskid -> 작업날짜+시간+초 로 변경 가능한지 검토
+* edge, chrome 에러 발생 수정(로그인 불가 현상)
