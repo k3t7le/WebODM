@@ -110,11 +110,17 @@ color: #FFFFFF;
 Administration -> Plugin에서 posm-gcpi, lightning Disabled
 ![image](https://user-images.githubusercontent.com/61860152/145432406-0962dc26-8d0e-4c4a-9d2c-3dbaf32416ae.png)
 
+## Chrome, Edge 로그인 실패
+Windroneus를 https 에서 http로 변경 (혹시 <b>Windroneus에서 https가 필수라면 알려주세요.</b>)
+
+방법 : Windroneus 프로젝트 설정에서 Enable SSL 항목을 체크 해제 (추후 리눅스 서버에 설정할 때도 http로 설정)
+![image](https://user-images.githubusercontent.com/61860152/145605336-8da69d6a-93bb-4e35-849e-1dd1497b89f2.png)
+
+
 
 <br><br>
 # 제약 사항
-FireFox에서만 정상 작동 Chrome, Edge의 경우 Cross site 관련되어 오류 발생 (로그인 실패)
-![image](https://user-images.githubusercontent.com/61860152/145428216-5e282ce3-89ea-4967-986d-02a17a5aa62f.png)
+* Windroneus에 iframe으로 표시되기 때문에 Windorneus와 http or https를 동일하게 설정 필요(서버 http 프로토콜이 다를 경우 쿠키 관련 오류 발생)
 
 <br><br>
 # 수정 검토 사항
