@@ -38,7 +38,6 @@ def index(request):
 @login_required
 @csrf_exempt
 def dashboard(request):
-    print("dashboard in~~~~~")
     no_processingnodes = ProcessingNode.objects.count() == 0
     if no_processingnodes and settings.PROCESSING_NODES_ONBOARDING is not None:
         return redirect(settings.PROCESSING_NODES_ONBOARDING)
@@ -58,7 +57,6 @@ def dashboard(request):
 @login_required
 @csrf_exempt
 def map(request, project_pk=None, task_pk=None):
-    print("map in~~~~~")
     title = _("Map")
 
     if project_pk is not None:
@@ -113,7 +111,6 @@ def model_display(request, project_pk=None, task_pk=None):
 
 @csrf_exempt
 def about(request):
-    print("about in~~~~~")
     return render(request, 'app/about.html', {'title': _('About'), 'version': settings.VERSION})
 
 @login_required
@@ -140,7 +137,6 @@ class FirstUserForm(forms.ModelForm):
 
 @csrf_exempt
 def welcome(request):
-    print("welcome in~~~~~")
     if User.objects.filter(is_superuser=True).count() > 0:
         return redirect('index')
 
