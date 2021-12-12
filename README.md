@@ -123,9 +123,10 @@ Windroneus를 https 에서 http로 변경 (혹시 <b>Windroneus에서 https가 �
 * Windroneus에 iframe으로 표시되기 때문에 Windorneus와 http or https를 동일하게 설정 필요(서버 http 프로토콜이 다를 경우 쿠키 관련 오류 발생)
 
 <br><br>
-# 수정 검토 사항
-* host filesystem에 파일 저장 시 
-`$media-dir/project/$project-index(숫자1부터 증가)/$taskid 에 저장
-project-index -> project name
-taskid -> 작업날짜+시간+초 로 변경 가능한지 검토`
-* edge, chrome 에러 발생 수정(로그인 불가 현상)
+# 수정사항 (2021. 12. 12 일)
+## 정사이미지 생성 완료 후 정사이미지만 최상위 폴더에 복사 
+
+`--media-dir /c/IMG_DATA`
+
+![image](https://user-images.githubusercontent.com/61860152/145703527-90945df2-964f-41be-b2c6-de8b03037581.png)
+
