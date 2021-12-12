@@ -43,6 +43,7 @@ from app.classes.gcp import GCPFile
 from .project import Project
 from django.utils.translation import gettext_lazy as _, gettext
 from datetime import datetime
+from dateutil.tz import gettz
 
 from functools import partial
 import subprocess
@@ -895,11 +896,13 @@ class Task(models.Model):
         self.save()
 
         # 정사 이미지 생성완료된 정사이미지만 저장소의 ODM_RESULT_IMG폴더에 '프로젝트명_시간.tif'의 형식으로 복사
-        now = datetime.now()
+        import pytz
+        KST = pytz.timezone('Asia/Seoul')
+        now = datetime.now(KST)
         current_time = now.strftime('%Y%m%d_%H%M%S')
 
         orthophoto_name = assets_dir+'odm_orthophoto/odm_orthophoto.tif'
-        target_orthophoto_name = assets_dir+'../../../../../ODM_RESULT_IMG/'+'A'+'_'+current_time+'.tif'
+        target_orthophoto_name = "{}../../../../../ODM_RESULT_IMG/{}_{}.tif".format(assets_dir, self.project, current_time) 
         try:
             shutil.copy2(orthophoto_name, target_orthophoto_name)
         except IOError as io_err:
