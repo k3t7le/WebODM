@@ -130,3 +130,7 @@ Windroneus를 https 에서 http로 변경 (혹시 <b>Windroneus에서 https가 �
 
 ![image](https://user-images.githubusercontent.com/61860152/145703527-90945df2-964f-41be-b2c6-de8b03037581.png)
 
+![image](https://user-images.githubusercontent.com/61860152/145703799-0fe36297-5c83-4484-9185-27101b919ef6.png)
+
+ODM_RESULT_IMG 폴더에 프로젝트명_날짜_시간.tif로 파일 저장 (라벨프로그램에서 리눅스 파일시스템 저장 이미지 사용할 경우 위 폴더의 데이터 사용)
+
