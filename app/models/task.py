@@ -42,6 +42,7 @@ from webodm import settings
 from app.classes.gcp import GCPFile
 from .project import Project
 from django.utils.translation import gettext_lazy as _, gettext
+from datetime import datetime
 
 from functools import partial
 import subprocess
@@ -834,6 +835,11 @@ class Task(models.Model):
         assets_dir = self.assets_path("")
         zip_path = self.assets_path("all.zip")
 
+        logger.info("assets_dir {}".format(assets_dir))
+        logger.info("zip_path {}".format(zip_path))
+
+        logger.info("project name {}".format(self.project))
+
         # Extract from zip
         with zipfile.ZipFile(zip_path, "r") as zip_h:
             zip_h.extractall(assets_dir)
@@ -852,6 +858,8 @@ class Task(models.Model):
             (os.path.realpath(self.assets_path("odm_dem", "dtm.tif")),
              'dtm_extent'),
         ]
+
+        
 
         for raster_path, field in extent_fields:
             if os.path.exists(raster_path):
@@ -885,6 +893,18 @@ class Task(models.Model):
         self.console_output += gettext("Done!") + "\n"
         self.status = status_codes.COMPLETED
         self.save()
+
+        # 정사 이미지 생성완료된 정사이미지만 저장소의 ODM_RESULT_IMG폴더에 '프로젝트명_시간.tif'의 형식으로 복사
+        now = datetime.now()
+        current_time = now.strftime('%Y%m%d_%H%M%S')
+
+        orthophoto_name = assets_dir+'odm_orthophoto/odm_orthophoto.tif'
+        target_orthophoto_name = assets_dir+'../../../../../ODM_RESULT_IMG/'+'A'+'_'+current_time+'.tif'
+        try:
+            shutil.copy2(orthophoto_name, target_orthophoto_name)
+        except IOError as io_err:
+            os.makedirs(os.path.dirname(assets_dir+'../../../../../ODM_RESULT_IMG/'))
+            shutil.copy(orthophoto_name, target_orthophoto_name)
 
         from app.plugins import signals as plugin_signals
         plugin_signals.task_completed.send_robust(sender=self.__class__, task_id=self.id)
