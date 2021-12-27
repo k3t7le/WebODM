@@ -53,12 +53,7 @@ WORKER_RUNNING = sys.argv[2:3] == ["worker"]
 DEBUG = os.environ.get('WO_DEBUG', 'YES') == 'YES' or TESTING
 DEV = os.environ.get('WO_DEV', 'NO') == 'YES' and not TESTING
 DEV_WATCH_PLUGINS = DEV and os.environ.get('WO_DEV_WATCH_PLUGINS', 'NO') == 'YES'
-#SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = os.environ.get('WO_SSL', 'NO') == False
-#SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = None
-CSRF_COOKIE_SAMESITE = None
-#CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = CSRF_COOKIE_SECURE = os.environ.get('WO_SSL', 'NO') == 'YES'
 INTERNAL_IPS = ['127.0.0.1']
 
 ALLOWED_HOSTS = ['*']
@@ -132,6 +127,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     #'django.middleware.locale.LocaleMiddleware',
 ]
+
 
 ROOT_URLCONF = 'webodm.urls'
 
@@ -273,11 +269,7 @@ LOGIN_URL = '/login/'
 # CORS (very relaxed settings, users might want to change this in production)
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
-#SESSION_COOKIE_SAMESITE = None
-#CSRF_COOKIE_SAMESITE = None
-CSRF_TRUSTED_ORIGINS = ['localhost:8000']
-X_FRAME_OPTIONS = 'ALLOWALL'
-CSRF_COOKIE_HTTPONLY = False
+SESSION_COOKIE_SAMESITE = None
 
 # File uploads
 MEDIA_ROOT = os.path.join(BASE_DIR, 'app', 'media')
