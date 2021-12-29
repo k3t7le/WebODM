@@ -380,6 +380,11 @@ CELERY_WORKER_HIJACK_ROOT_LOGGER = False
 # before it should be considered offline
 NODE_OFFLINE_MINUTES = 5 
 
+
+# 같은 도메인 다른 포트 사용 어플리케이션 session id 충돌 방지
+SESSION_COOKIE_NAME = 'sessionid_odm'
+
+
 if TESTING or FLUSHING:
     CELERY_TASK_ALWAYS_EAGER = True
 
